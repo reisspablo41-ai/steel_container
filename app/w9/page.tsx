@@ -21,8 +21,8 @@ export default function W9Page() {
           <h3 className="font-bold text-slate-900 mb-2">Company Information</h3>
           <p className="text-sm text-slate-500">
             Steel Container Store, Inc.<br/>
-            123 Industrial Way<br/>
-            Port City, CA 90000<br/>
+            1251 Taney St<br/>
+            North Kansas City, MO 64116<br/>
             EIN: 12-3456789
           </p>
         </div>
