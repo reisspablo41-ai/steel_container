@@ -1,65 +1,149 @@
-import Image from "next/image";
+"use client";
+
+import Hero from "@/components/home/Hero";
+import FeaturedProducts from "@/components/home/FeaturedProducts";
+import FeaturedCategories from "@/components/home/FeaturedCategories";
+import FeaturesSection from "@/components/home/FeaturesSection";
+import HowItWorks from "@/components/home/HowItWorks";
+import Testimonials from "@/components/home/Testimonials";
+import ReviewsSlideshow from "@/components/home/ReviewsSlideshow";
+import FAQSection from "@/components/home/FAQSection";
+import Link from "next/link";
+import { Hammer, PenTool, Mail } from "lucide-react";
+import { motion } from "framer-motion";
+import AnimatedSection from "@/components/animations/AnimatedSection";
+import { fadeInLeft, fadeInRight, containerVariants, staggerItem } from "@/utils/animations";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="bg-slate-50">
+      <Hero />
+      <FeaturedProducts />
+      <FeaturesSection />
+      <FeaturedCategories />
+      <HowItWorks />
+
+      {/* Modification Service Teaser */}
+      <AnimatedSection className="py-20 bg-slate-900 text-white">
+        <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={containerVariants}
+            className="container-safe grid lg:grid-cols-2 gap-12 items-center"
+        >
+          <motion.div variants={fadeInLeft}>
+            <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="inline-block px-3 py-1 mb-4 rounded bg-brand-orange/20 text-brand-orange text-sm font-bold uppercase tracking-wider"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              Custom Fabrication
+            </motion.div>
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-6">
+              DESIGN YOUR DREAM <br /> CONTAINER BUILD
+            </h2>
+            <p className="text-slate-400 mb-8 text-lg leading-relaxed">
+              From simple windows and doors to full-scale mobile offices and pop-up shops.
+              Our fabrication team can modify any container to meet your exact specifications.
+            </p>
+
+            <motion.div
+                variants={containerVariants}
+                className="grid sm:grid-cols-2 gap-6 mb-8"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+              <motion.div variants={staggerItem} className="flex gap-4">
+                <motion.div
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                    className="bg-slate-800 p-3 rounded h-fit"
+                >
+                  <PenTool className="text-brand-orange" size={24} />
+                </motion.div>
+                <div>
+                  <h4 className="font-bold mb-1">Custom Design</h4>
+                  <p className="text-sm text-slate-400">Work with our engineers to create blueprints.</p>
+                </div>
+              </motion.div>
+              <motion.div variants={staggerItem} className="flex gap-4">
+                <motion.div
+                    whileHover={{ rotate: -5, scale: 1.1 }}
+                    className="bg-slate-800 p-3 rounded h-fit"
+                >
+                  <Hammer className="text-brand-orange" size={24} />
+                </motion.div>
+                <div>
+                  <h4 className="font-bold mb-1">Expert Build</h4>
+                  <p className="text-sm text-slate-400">Fabricated in-house by certified welders.</p>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link href="/customizations" className="inline-block bg-brand-orange text-white px-8 py-3.5 font-bold rounded hover:bg-orange-600 transition-colors">
+                Start a Custom Project
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+              variants={fadeInRight}
+              className="relative h-[500px] bg-slate-800 rounded-2xl overflow-hidden border border-slate-700"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            <motion.img
+              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=1000"
+              alt="Container Modification Process"
+              className="w-full h-full object-cover opacity-80"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.5 }}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          </motion.div>
+        </motion.div>
+      </AnimatedSection>
+
+      <Testimonials />
+      <ReviewsSlideshow />
+      <FAQSection />
+
+      {/* CTA Section */}
+      <AnimatedSection className="py-24 bg-brand-orange">
+        <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={containerVariants}
+            className="container-safe text-center"
+        >
+          <motion.h2
+              variants={staggerItem}
+              className="text-3xl sm:text-4xl font-heading font-bold text-white mb-6"
           >
-            Documentation
-          </a>
-        </div>
-      </main>
+            READY TO GET STARTED?
+          </motion.h2>
+          <motion.p
+              variants={staggerItem}
+              className="text-white/90 text-lg max-w-2xl mx-auto mb-10"
+          >
+            Whether you need a single storage unit or a fleet of containers,
+            our team is here to help you find the perfect solution.
+          </motion.p>
+          <motion.div
+              variants={containerVariants}
+              className="flex flex-col sm:flex-row justify-center gap-4"
+          >
+            <motion.div variants={staggerItem} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link href="/containers" className="px-8 py-3.5 bg-white text-brand-orange font-bold rounded hover:bg-slate-50 transition-colors">
+                Browse Inventory
+              </Link>
+            </motion.div>
+            <motion.div variants={staggerItem} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link href="/contact" className="px-8 py-3.5 bg-brand-orange border-2 border-white text-white font-bold rounded hover:bg-white/10 transition-colors flex items-center justify-center gap-2">
+                <Mail size={20} /> Contact Sales
+              </Link>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </AnimatedSection>
     </div>
   );
 }
